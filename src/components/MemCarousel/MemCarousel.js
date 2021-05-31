@@ -11,10 +11,9 @@ const MemCarousel = () => {
 
     useEffect(() => {
         const fetchMemes = async () => {
-            const response = await axios.get('https://api.imgflip.com/get_memes');
-            dispatch(fetchMemesSuccess(response.data.data.memes));
+            return await axios.get('https://api.imgflip.com/get_memes');
         };
-        fetchMemes();
+        fetchMemes().then(response => dispatch(fetchMemesSuccess(response.data.data.memes)));
     }, [dispatch]);
 
     const choose = (meme) => {
