@@ -1,8 +1,9 @@
-import React, {useEffect} from 'react';
-import {useSelector, useDispatch} from "react-redux";
-import {fetchMemes, chooseMeme, clearMeme} from "../../store/actions";
+import React, {useEffect, useReducer} from 'react';
+import {reducer, initialState} from "../../store/reducer";
+import {chooseMeme, clearMeme, fetchMemesSuccess} from "../../store/actions";
 import {makeStyles} from '@material-ui/core/styles';
 import GridList from '@material-ui/core/GridList';
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -30,25 +31,29 @@ const useStyles = makeStyles((theme) => ({
 
 const MemCarousel = () => {
     const classes = useStyles();
-    const memes = useSelector(state => state.memes);
-    const dispatch = useDispatch();
+    const [state, dispatch] = useReducer(reducer, initialState);
 
     useEffect(() => {
-        dispatch(fetchMemes());
+        const fetchMemes = async () => {
+            const response = await axios.get('https://api.imgflip.com/get_memes');
+            dispatch(fetchMemesSuccess(response.data.data.memes));
+        }
+        fetchMemes();
+
     }, [dispatch]);
 
-    const choose = (meme) => {
-        dispatch(chooseMeme(meme));
-        dispatch(clearMeme());
-    };
+    // const choose = (meme) => {
+    //     dispatch(chooseMeme(meme));
+    //     dispatch(clearMeme());
+    // };
 
-    const memesImages = memes.map(meme => {
+    const memesImages = state.memes.map(meme => {
         return (
             <div key={meme.id}>
                 <img src={meme.url}
                      alt={meme.name}
                      className={classes.memImg}
-                     onClick={() => choose(meme)}
+                     // onClick={() => choose(meme)}
                 />
             </div>
         )
@@ -56,7 +61,7 @@ const MemCarousel = () => {
 
     return (
         <div className={classes.root}>
-            <GridList className={classes.gridList} >
+            <GridList className={classes.gridList}>
                 {memesImages}
             </GridList>
         </div>

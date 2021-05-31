@@ -67,82 +67,82 @@ const useStyles = makeStyles((theme) => ({
 
 const Changer = () => {
     const classes = useStyles();
-    const singleMeme = useSelector(state => state.singleMeme);
-    const show = useSelector(state => state.createMeme);
-    const memeText = useSelector(state => state.text);
-    const dispatch = useDispatch();
-    const [text, setText] = useState({
-        topText: '',
-        bottomText: '',
-    });
-
-
-    const inputChangeHandler = (e) => {
-        const name = e.target.name;
-        const value = e.target.value;
-        setText(prevState => {
-            return {...prevState, [name]: value};
-        });
-    };
-
-    const createMeme = () => {
-        if (text.topText !== '' || text.bottomText !== '') {
-            dispatch(showResult(text));
-            setText({
-                topText: '',
-                bottomText: '',
-            });
-        }
-    };
-
-    let ownMeme = (
-        <div className={classes.memeResult}>
-            <p className={classes.topText}>
-                {memeText?.topText}
-            </p>
-            <img src={singleMeme?.url} alt={singleMeme?.name} className={classes.ownMeme}/>
-            <p className={classes.bottomText}>
-                {memeText?.bottomText}
-            </p>
-        </div>
-    );
+    // const singleMeme = useSelector(state => state.singleMeme);
+    // const show = useSelector(state => state.createMeme);
+    // const memeText = useSelector(state => state.text);
+    // const dispatch = useDispatch();
+    // const [text, setText] = useState({
+    //     topText: '',
+    //     bottomText: '',
+    // });
+    //
+    //
+    // const inputChangeHandler = (e) => {
+    //     const name = e.target.name;
+    //     const value = e.target.value;
+    //     setText(prevState => {
+    //         return {...prevState, [name]: value};
+    //     });
+    // };
+    //
+    // const createMeme = () => {
+    //     if (text.topText !== '' || text.bottomText !== '') {
+    //         dispatch(showResult(text));
+    //         setText({
+    //             topText: '',
+    //             bottomText: '',
+    //         });
+    //     }
+    // };
+    //
+    // let ownMeme = (
+    //     <div className={classes.memeResult}>
+    //         <p className={classes.topText}>
+    //             {memeText?.topText}
+    //         </p>
+    //         <img src={singleMeme?.url} alt={singleMeme?.name} className={classes.ownMeme}/>
+    //         <p className={classes.bottomText}>
+    //             {memeText?.bottomText}
+    //         </p>
+    //     </div>
+    // );
 
     return (
         <div className={classes.changerBlock}>
-            <Paper elevation={5} className={classes.changerPage}>
-                <TextField name='topText'
-                           value={text.topText}
-                           label="Top Text"
-                           variant="outlined"
-                           fullWidth
-                           onChange={inputChangeHandler}
-                />
-                {singleMeme ? <img
-                    src={singleMeme.url}
-                    alt={singleMeme.name}
-                    className={classes.singleMeme}
-                /> : <p>Choose meme from list</p>}
-                <TextField name='bottomText'
-                           value={text.bottomText}
-                           label="Bottom Text"
-                           variant="outlined"
-                           fullWidth
-                           onChange={inputChangeHandler}
-                />
-            </Paper>
-            <div className={classes.buttonBlock}>
-                <Button variant="contained"
-                        color="primary"
-                        className={classes.btn}
-                        onClick={() => createMeme()}
-                        disabled={!singleMeme}
-                >
-                    <ArrowForwardIosIcon/>
-                </Button>
-            </div>
-            <Paper elevation={5} className={classes.changerPage}>
-                {show ? ownMeme : null}
-            </Paper>
+            {/*<Paper elevation={5} className={classes.changerPage}>*/}
+            {/*    <TextField name='topText'*/}
+            {/*               value={text.topText}*/}
+            {/*               label="Top Text"*/}
+            {/*               variant="outlined"*/}
+            {/*               fullWidth*/}
+            {/*               onChange={inputChangeHandler}*/}
+            {/*    />*/}
+            {/*    {singleMeme ? <img*/}
+            {/*        src={singleMeme.url}*/}
+            {/*        alt={singleMeme.name}*/}
+            {/*        className={classes.singleMeme}*/}
+            {/*    /> : <p>Choose meme from list</p>}*/}
+            {/*    <TextField name='bottomText'*/}
+            {/*               value={text.bottomText}*/}
+            {/*               label="Bottom Text"*/}
+            {/*               variant="outlined"*/}
+            {/*               fullWidth*/}
+            {/*               onChange={inputChangeHandler}*/}
+            {/*    />*/}
+            {/*</Paper>*/}
+            {/*<div className={classes.buttonBlock}>*/}
+            {/*    <Button variant="contained"*/}
+            {/*            color="primary"*/}
+            {/*            className={classes.btn}*/}
+            {/*            onClick={() => createMeme()}*/}
+            {/*            disabled={!singleMeme}*/}
+            {/*    >*/}
+            {/*        <ArrowForwardIosIcon/>*/}
+            {/*    </Button>*/}
+            {/*</div>*/}
+            {/*<Paper elevation={5} className={classes.changerPage}>*/}
+            {/*    {show ? ownMeme : null}*/}
+            {/*</Paper>*/}
         </div>
     );
 };

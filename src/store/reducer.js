@@ -14,7 +14,7 @@ const initialState = {
     text: null,
 };
 
-const reducer = (state = initialState, action) => {
+const reducer = (state, action) => {
     switch (action.type) {
         case FETCH_MEMES_SUCCESS:
             return {...state, memes: action.data, fetchMemesError: null};
@@ -31,4 +31,4 @@ const reducer = (state = initialState, action) => {
     }
 };
 
-export default reducer;
+export {reducer, initialState};

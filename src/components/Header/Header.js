@@ -6,18 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import CollectionsIcon from '@material-ui/icons/Collections';
 import MenuIcon from '@material-ui/icons/Menu';
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        flexGrow: 1,
-    },
-    menuButton: {
-        marginRight: theme.spacing(2),
-    },
-    title: {
-        flexGrow: 1,
-    },
-}));
-
 const Header = () => {
     const classes = useStyles();
 
@@ -36,5 +24,17 @@ const Header = () => {
         </div>
     );
 };
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginRight: theme.spacing(2),
+    },
+    title: {
+        flexGrow: 1,
+    },
+}));
 
 export default Header;
